@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #00ffd1;
+  --error: #ff4365;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.btn-primary {
+  @apply bg-[#00ffd1] text-black px-4 py-2 rounded hover:opacity-90 transition-opacity;
+}
+
+.btn-error {
+  @apply bg-[#ff4365] text-white px-4 py-2 rounded hover:opacity-90 transition-opacity;
+}
+
+.input-field {
+  @apply bg-[#1a1a1a] border border-gray-700 rounded px-4 py-2 w-full focus:outline-none focus:border-[#00ffd1];
+} 
