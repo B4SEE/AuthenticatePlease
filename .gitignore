@@ -8,13 +8,14 @@
 **/.nyc_output
 
 # Next.js
-**/.next/
+# Allowing .next for teacher review
+# **/.next/
 **/out/
-**/.next
 
 # Production
-**/build
-**/dist
+# Allowing build for teacher review
+# **/build
+# **/dist
 
 # Misc
 **/.DS_Store
@@ -85,8 +86,9 @@
 **/.pnp.*
 
 # Project specific
-/authpls/.next
+# Allowing .next for teacher review
+# /authpls/.next
 /authpls/out
 /authpls/node_modules
-/authpls/build
+# /authpls/build
 /authpls/.env.local 
