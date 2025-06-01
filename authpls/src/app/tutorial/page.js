@@ -5,16 +5,16 @@ import Link from 'next/link';
 export default function TutorialPage() {
   return (
     <div className="relative min-h-screen bg-[#0A192F] font-mono">
-      <div className="absolute top-0 left-0">
+      <div className="flex items-start p-4">
         <Link
-          href="/"
-          className="text-[#767676] hover:text-[#FF3366] transition-colors text-lg p-4 block"
+          href="/dashboard"
+          className="text-[#00FFD1] hover:text-[#00FFD1]/80 text-lg font-bold"
         >
           Back
         </Link>
       </div>
 
-      <div className="flex flex-col items-center px-4 pt-32 w-full">
+      <div className="flex flex-col items-center px-4 pt-32 pb-16 w-full">
         <h1 className="text-[#64FFDA] text-5xl md:text-6xl mb-12 text-center">
           AuthenticatePlease
         </h1>

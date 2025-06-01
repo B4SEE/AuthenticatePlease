@@ -94,6 +94,12 @@ export default function DashboardPage() {
             SETTINGS
           </button>
         </Link>
+
+        <Link href="/feedback" className="w-48">
+          <button className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+            FEEDBACK
+          </button>
+        </Link>
       </div>
 
    

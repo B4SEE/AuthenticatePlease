@@ -38,11 +38,10 @@ export default function Settings() {
 
   return (
     <div className="relative min-h-screen bg-[#0A192F] font-mono">
-      {/* Back ссылка в углу */}
-      <div className="absolute top-0 left-0">
+      <div className="flex items-start p-4">
         <Link
-          href="/"
-          className="text-[#767676] hover:text-[#FF3366] transition-colors text-lg p-4 block"
+          href="/dashboard"
+          className="text-[#00FFD1] hover:text-[#00FFD1]/80 text-lg font-bold"
         >
           Back
         </Link>

@@ -208,7 +208,11 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     case 'TOGGLE_PAUSE':
       return {
         ...state,
-        isPaused: !state.isPaused
+        isPaused: !state.isPaused,
+        emails: state.emails.map(email => ({
+          ...email,
+          timeLimit: email.timeLimit
+        }))
       };
 
     case 'TICK':

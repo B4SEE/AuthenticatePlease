@@ -450,13 +450,22 @@ export default function Game() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="text-xl text-[#64FFDA] mb-4">Game Paused</div>
-            <button
-              type="button"
-              onClick={handleEndGame}
-              className="bg-[#FF3366] text-white px-8 py-3 rounded shadow-md hover:bg-[#E52A59] transition"
-            >
-              End Game
-            </button>
+            <div className="flex gap-4">
+              <button
+                type="button"
+                onClick={() => dispatch({ type: 'TOGGLE_PAUSE' })}
+                className="bg-[#64FFDA] text-[#0A192F] px-8 py-3 rounded shadow-md hover:bg-[#52E9C2] transition font-bold"
+              >
+                Resume
+              </button>
+              <button
+                type="button"
+                onClick={handleEndGame}
+                className="bg-[#FF3366] text-white px-8 py-3 rounded shadow-md hover:bg-[#E52A59] transition"
+              >
+                End Game
+              </button>
+            </div>
           </div>
         </div>
       )}

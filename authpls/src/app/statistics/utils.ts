@@ -112,55 +112,95 @@ export async function resetAllStats(): Promise<void> {
   localStorage.removeItem(allTimeKey);
 }
 
-export async function exportStatsToCSV(): Promise<void> {
-  const allTimeStats = await getAllTimeStats();
-  const lastGameStats = await getLastGameStats();
+export async function exportStatsToCSV(type: 'all-time' | 'last-game'): Promise<void> {
   const userId = await getUserId();
   const userSuffix = userId ? `_${userId}` : '';
 
-  const allTimeRow = {
-    'Type': 'All-Time',
-    'Total Games': allTimeStats.totalGames,
-    'False Positives': allTimeStats.falsePositives,
-    'Total Reported': allTimeStats.totalReported,
-    'Phishing Detected': allTimeStats.phishingDetected,
-    'Legitimate Allowed': allTimeStats.legitimateAllowed,
-    'Average Response Time': (allTimeStats.totalResponseTime / allTimeStats.totalDecisions).toFixed(1),
-    'Accuracy': ((allTimeStats.phishingDetected + allTimeStats.legitimateAllowed) / allTimeStats.totalDecisions * 100).toFixed(1)
+  // Helper function to create and trigger download
+  const downloadCSV = (content: string, filename: string) => {
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', filename);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
-  const lastGameRow = lastGameStats ? {
-    'Type': 'Last Game',
-    'Total Games': 1,
-    'False Positives': lastGameStats.falsePositives,
-    'Total Reported': lastGameStats.phishingDetected + lastGameStats.falsePositives,
-    'Phishing Detected': lastGameStats.phishingDetected,
-    'Legitimate Allowed': lastGameStats.legitimateAllowed,
-    'Average Response Time': lastGameStats.avgResponseTime.toFixed(1),
-    'Accuracy': ((lastGameStats.phishingDetected + lastGameStats.legitimateAllowed) / 
-      (lastGameStats.phishingDetected + lastGameStats.legitimateAllowed + lastGameStats.falsePositives + lastGameStats.falseNegatives) * 100).toFixed(1)
-  } : null;
+  // Helper function to format CSV values
+  const formatCSVValue = (value: any): string => {
+    if (value === null || value === undefined) return '';
+    const stringValue = String(value);
+    return stringValue.includes(',') ? `"${stringValue}"` : stringValue;
+  };
 
-  const rows = [allTimeRow];
-  if (lastGameRow) rows.push(lastGameRow);
+  if (type === 'all-time') {
+    const allTimeStats = await getAllTimeStats();
+    const allTimeHeaders = [
+      'Total Games',
+      'False Positives',
+      'Total Reported',
+      'Phishing Detected',
+      'Legitimate Allowed',
+      'Average Response Time (s)',
+      'Accuracy (%)'
+    ];
 
-  // Convert to CSV
-  const headers = Object.keys(allTimeRow);
-  const csvContent = [
-    headers.join(','),
-    ...rows.map(row => headers.map(header => row[header]).join(','))
-  ].join('\n');
+    const allTimeValues = [
+      allTimeStats.totalGames,
+      allTimeStats.falsePositives,
+      allTimeStats.totalReported,
+      allTimeStats.phishingDetected,
+      allTimeStats.legitimateAllowed,
+      (allTimeStats.totalResponseTime / allTimeStats.totalDecisions).toFixed(1),
+      ((allTimeStats.phishingDetected + allTimeStats.legitimateAllowed) / allTimeStats.totalDecisions * 100).toFixed(1)
+    ];
 
-  // Create and trigger download
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  if (link.download !== undefined) {
-    const url = URL.createObjectURL(blob);
-    link.setAttribute('href', url);
-    link.setAttribute('download', `authenticate_please_stats${userSuffix}.csv`);
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const allTimeCSV = [
+      allTimeHeaders.join(','),
+      allTimeValues.map(formatCSVValue).join(',')
+    ].join('\n');
+
+    downloadCSV(allTimeCSV, `authenticate_please_all_time${userSuffix}.csv`);
+  } else {
+    const lastGameStats = await getLastGameStats();
+    if (lastGameStats) {
+      const lastGameHeaders = [
+        'Score',
+        'Total Emails',
+        'Phishing Detected',
+        'Legitimate Allowed',
+        'False Positives',
+        'False Negatives',
+        'Average Response Time (s)',
+        'Accuracy (%)',
+        'End Reason'
+      ];
+
+      const lastGameValues = [
+        lastGameStats.score,
+        lastGameStats.totalEmails,
+        lastGameStats.phishingDetected,
+        lastGameStats.legitimateAllowed,
+        lastGameStats.falsePositives,
+        lastGameStats.falseNegatives,
+        lastGameStats.avgResponseTime.toFixed(1),
+        ((lastGameStats.phishingDetected + lastGameStats.legitimateAllowed) / 
+          (lastGameStats.phishingDetected + lastGameStats.legitimateAllowed + 
+           lastGameStats.falsePositives + lastGameStats.falseNegatives) * 100).toFixed(1),
+        lastGameStats.endReason.replace(/_/g, ' ').toUpperCase()
+      ];
+
+      const lastGameCSV = [
+        lastGameHeaders.join(','),
+        lastGameValues.map(formatCSVValue).join(',')
+      ].join('\n');
+
+      downloadCSV(lastGameCSV, `authenticate_please_last_game${userSuffix}.csv`);
+    }
   }
 } 

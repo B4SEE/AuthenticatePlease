@@ -62,7 +62,7 @@ export default function StatisticsPage() {
   }
 
   const handleExport = async () => {
-    await exportStatsToCSV()
+    await exportStatsToCSV(showAllTime ? 'all-time' : 'last-game')
   }
 
   const currentStats = showAllTime ? allTimeStats : (lastGameStats || emptyGameStats)
@@ -221,6 +221,24 @@ export default function StatisticsPage() {
           </div>
         </div>
 
+        {!showAllTime && lastGameStats && (
+          <div style={{ perspective: '600px' }}>
+            <div
+              {...tiltHandlers}
+              className="bg-[#0B1120] border-4 border-[#112240] shadow-md aspect-square flex flex-col items-center justify-center w-full max-w-xl p-4"
+              style={{
+                transformStyle: 'preserve-3d',
+                transform: 'rotateX(0deg) rotateY(0deg)',
+              }}
+            >
+              <h3 className="text-gray-400 mb-2 text-lg">End Reason</h3>
+              <p className="text-[#FF4365] text-2xl font-medium">
+                {lastGameStats.endReason.replace(/_/g, ' ').toUpperCase()}
+              </p>
+            </div>
+          </div>
+        )}
+
         {showAllTime && (
           <div style={{ perspective: '600px' }}>
             <div
@@ -255,7 +273,7 @@ export default function StatisticsPage() {
               hover:bg-[#64FFDA]
             "
           >
-            EXPORT CSV
+            EXPORT STATISTICS (CSV)
           </button>
 
           <button
