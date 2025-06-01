@@ -37,14 +37,14 @@ export default function LoginForm({ onSubmit, onReport }: LoginFormProps) {
       <div className="flex gap-4">
         <button
           type="submit"
-          className="flex-1 bg-cyan-400 text-gray-900 px-6 py-2 rounded hover:bg-cyan-300 transition"
+          className="flex-1 bg-[#64FFDA] text-[#0A192F] py-2 rounded shadow-md hover:bg-[#52E9C2] transition"
         >
           LOGIN
         </button>
         <button
           type="button"
           onClick={onReport}
-          className="flex-1 bg-pink-500 px-6 py-2 rounded hover:bg-pink-400 transition"
+          className="flex-1 bg-[#FF3366] text-[#0A192F] py-2 rounded shadow-md hover:bg-[#E52A59] transition"
         >
           REPORT
         </button>

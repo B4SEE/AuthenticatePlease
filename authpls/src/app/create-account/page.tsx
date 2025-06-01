@@ -57,18 +57,20 @@ export default function CreateAccountPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#0A192F] flex items-center justify-center">
-        <div className="text-[#5FFBF1] text-xl font-mono">Loading...</div>
+        <div className="text-[#64FFDA] text-xl font-mono">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0A192F] flex flex-col items-center justify-center p-4">
-      <h1 className="text-[#5FFBF1] text-5xl font-mono mb-12">AuthenticatePlease</h1>
-      
-      <div className="bg-[#0E1F37] p-8 rounded-lg w-full max-w-md">
-        <h2 className="text-[#5FFBF1] text-3xl font-mono mb-2">Create Account</h2>
-        <p className="text-[#FF4365] mb-6">Create a secure account</p>
+    <div className="min-h-screen bg-[#0A192F] font-mono flex flex-col items-center justify-center p-4">
+      <h1 className="text-[#64FFDA] text-5xl mb-12">AuthenticatePlease</h1>
+
+      <div className="bg-[#0B1120] border-4 border-[#112240] p-8 rounded-sm w-full max-w-md shadow-heavy">
+        <h2 className="text-[#64FFDA] text-3xl mb-2 text-center">Create Account</h2>
+        <p className="text-[#FF4365] mb-6 text-center font-thin">
+          Create a secure account
+        </p>
 
         {error && (
           <div className="mb-4 p-3 bg-red-500/10 border border-red-500 text-red-500 rounded">
@@ -84,7 +86,7 @@ export default function CreateAccountPage() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter username"
-              className="w-full p-3 rounded bg-[#1A2C44] text-white border-none focus:outline-none focus:ring-2 focus:ring-[#5FFBF1]"
+              className="w-full p-3 rounded bg-[#1A2C44] text-white focus:outline-none focus:ring-2 focus:ring-[#5FFBF1]"
               required
             />
           </div>
@@ -96,7 +98,7 @@ export default function CreateAccountPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Minimum 6 characters"
-              className="w-full p-3 rounded bg-[#1A2C44] text-white border-none focus:outline-none focus:ring-2 focus:ring-[#5FFBF1]"
+              className="w-full p-3 rounded bg-[#1A2C44] text-white focus:outline-none focus:ring-2 focus:ring-[#5FFBF1]"
               required
               minLength={6}
             />
@@ -104,21 +106,21 @@ export default function CreateAccountPage() {
 
           <button
             type="submit"
-            className="w-full bg-[#5FFBF1] text-[#0A192F] py-3 rounded font-mono hover:bg-[#4EEAE0] transition-colors"
+            className="w-full bg-[#64FFDA] text-[#0A192F] py-3 rounded font-extrabold text-lg hover:bg-[#4EEAE0] transition-colors"
           >
             CREATE ACCOUNT
           </button>
         </form>
 
         <div className="mt-6 flex justify-between items-center">
-          <Link href="/help" className="text-[#5FFBF1] hover:underline">
+          <Link href="/help" className="text-[#64FFDA] hover:underline">
             Need help?
           </Link>
-          <Link href="/" className="text-[#FF4365] hover:underline">
+          <Link href="/" className="text-[#FF4365] hover:underline font-bold">
             Login
           </Link>
         </div>
       </div>
     </div>
   );
-} 
+}

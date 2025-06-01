@@ -56,21 +56,21 @@ export default function LoginPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0A192F] flex items-center justify-center">
-        <div className="text-[#5FFBF1] text-xl font-mono">Loading...</div>
+      <div className="min-h-screen bg-[#0A192F] flex items-center justify-center font-mono text-[#5FFBF1] text-xl">
+        Loading...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0A192F] flex flex-col items-center justify-center p-4">
-      <h1 className="text-[#5FFBF1] text-5xl font-mono mb-12">AuthenticatePlease</h1>
-      
-      <div className="bg-[#0E1F37] p-8 rounded-lg w-full max-w-md">
-        <h2 className="text-[#5FFBF1] text-3xl font-mono mb-2">Login</h2>
-        <p className="text-[#FF4365] mb-6">
+    <div className="min-h-screen bg-[#0A192F] font-mono flex flex-col items-center justify-center p-4">
+      <h1 className="text-[#64FFDA] text-5xl font-mono mb-12">AuthenticatePlease</h1>
+
+      <div className="bg-[#0B1120] border-4 border-[#112240] shadow-heavy p-8 rounded-sm w-full max-w-md">
+        <h2 className="text-[#64FFDA] text-3xl font-mono mb-2 text-center">Login</h2>
+        <p className="text-[#FF3366] mb-6 text-center">
           Don&apos;t have an account?{' '}
-          <Link href="/create-account" className="hover:underline">
+          <Link href="/create-account" className="font-bold hover:underline">
             Signup
           </Link>
         </p>
@@ -89,7 +89,7 @@ export default function LoginPage() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter username"
-              className="w-full p-3 rounded bg-[#1A2C44] text-white border-none focus:outline-none focus:ring-2 focus:ring-[#5FFBF1]"
+              className="w-full p-3 rounded bg-[#1A2C44] text-white border-none focus:outline-none focus:ring-2 focus:ring-[#64FFDA]"
               required
             />
           </div>
@@ -101,7 +101,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Minimum 6 characters"
-              className="w-full p-3 rounded bg-[#1A2C44] text-white border-none focus:outline-none focus:ring-2 focus:ring-[#5FFBF1]"
+              className="w-full p-3 rounded bg-[#1A2C44] text-white border-none focus:outline-none focus:ring-2 focus:ring-[#64FFDA]"
               required
               minLength={6}
             />
@@ -109,18 +109,18 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-[#5FFBF1] text-[#0A192F] py-3 rounded font-mono hover:bg-[#4EEAE0] transition-colors"
+            className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold text-lg py-3 rounded shadow-md hover:bg-[#52E9C2] transition-colors"
           >
             LOGIN
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <Link href="/help" className="text-[#5FFBF1] hover:underline">
+        <div className="mt-6 text-left">
+          <Link href="/help" className="text-[#64FFDA] hover:underline">
             Need help?
           </Link>
         </div>
       </div>
     </div>
   );
-} 
+}

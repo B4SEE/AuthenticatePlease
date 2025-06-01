@@ -16,13 +16,13 @@ const IgnoredEmails = ({ ignoredEmails, onReport, onAllow }) => (
                         <div className="flex gap-2">
                             <button
                                 onClick={() => onReport(email)}
-                                className="bg-pink-500 px-4 py-1 rounded text-sm hover:bg-pink-400 transition"
+                                className="flex-1 bg-[#FF3366] text-[#0A192F] py-2 rounded shadow-md hover:bg-[#E52A59] transition"
                             >
                                 Report (5pts)
                             </button>
                             <button
                                 onClick={() => onAllow(email)}
-                                className="bg-cyan-400 text-gray-900 px-4 py-1 rounded text-sm hover:bg-cyan-300 transition"
+                                className="flex-1 bg-[#64FFDA] text-[#0A192F] py-2 rounded shadow-md hover:bg-[#52E9C2] transition"
                             >
                                 Allow (5pts)
                             </button>

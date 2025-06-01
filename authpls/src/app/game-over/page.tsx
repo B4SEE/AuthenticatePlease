@@ -18,35 +18,48 @@ export default function GameOverPage() {
     loadStats();
   }, []);
 
+
+  useEffect(() => {
+    const go = document.getElementById('gameover');
+    if (go) {
+      go.style.opacity = '1';
+      go.style.transform = 'perspective(800px) translateZ(0) scale(1)';
+    }
+  }, []);
+
   if (!stats) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#0A192F] text-[#5FFBF1]">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#0B1120] text-[#5FFBF1] font-mono">
         Loading...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#0A192F] p-4">
-      <div className="text-center mb-16">
-        <h1 className="text-[#5FFBF1] text-6xl font-mono mb-4">GAME OVER</h1>
-        <p className="text-[#FF4365] text-2xl">
-          {stats.endReason === 'phishing_credentials' 
-            ? 'You entered credentials on a phishing site!'
-            : stats.endReason === 'phishing_download'
-            ? 'You downloaded a malicious file!'
-            : stats.endReason === 'user_ended'
-            ? 'Game ended by user'
-            : 'Your score dropped below zero!'}
-        </p>
+    <div
+      id="gameover"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundColor: '#000',
+        opacity: 1,
+        transform: 'perspective(800px) translateZ(0) scale(1)',
+        transition: 'all 2s ease',
+        zIndex: 50,
+      }}
+      className="min-h-screen flex flex-col items-center justify-center bg-[#0B1120] p-4 font-mono"
+    >
+      <div className="bg-[#FF3366]/30 border-4 border-[#FF3366] shadow-heavy rounded-sm w-full max-w-xl py-12 mb-12 flex items-center justify-center">
+        <h1 className="text-[#FF3366] text-[96px] font-extrabold leading-none">
+          GAME OVER
+        </h1>
       </div>
 
-      <div className="bg-[#0E1F37] p-8 rounded-lg w-full max-w-md mb-8">
-        <h2 className="text-[#5FFBF1] text-2xl font-mono mb-4">
-          FINAL SCORE: <span className="text-[#FF4365]">{stats.score}</span>
+      <div className="w-full max-w-xl text-center mb-12">
+        <h2 className="text-white text-[40px] font-normal mb-6">
+          Your final score: {stats.score}
         </h2>
-        
-        <div className="space-y-4 text-gray-400">
+        <div className="space-y-4 text-[#767676] text-sm">
           <p>Phishing Detected: {stats.phishingDetected}</p>
           <p>Legitimate Allowed: {stats.legitimateAllowed}</p>
           <p>False Positives: {stats.falsePositives}</p>
@@ -55,19 +68,19 @@ export default function GameOverPage() {
         </div>
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex flex-row gap-6">
         <Link href="/game">
-          <button className="bg-[#5FFBF1] text-[#0A192F] py-3 px-8 rounded font-mono text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <button className="bg-[#64FFDA] text-[#0A192F] font-extrabold text-lg py-3 px-8 rounded shadow-md transition-colors hover:bg-[#52E9C2]">
             PLAY AGAIN
           </button>
         </Link>
-        
+
         <Link href="/dashboard">
-          <button className="bg-[#5FFBF1] text-[#0A192F] py-3 px-8 rounded font-mono text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <button className="bg-[#FF3366] text-[#0A192F] font-extrabold text-lg py-3 px-8 rounded shadow-md transition-colors hover:bg-[#E52A59]">
             DASHBOARD
           </button>
         </Link>
       </div>
     </div>
   );
-} 
+}

@@ -1,34 +1,31 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getLastGameStats } from '../statistics/utils';
+import BarChart from '../../components/BarChart';
 
 export default function DashboardPage() {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [lastGameStats, setLastGameStats] = useState(null);
 
+
   useEffect(() => {
-    // Check authentication status
     const checkAuth = async () => {
       try {
         const res = await fetch('/api/auth/user');
         const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error('Not authenticated');
-        }
-
+        if (!res.ok) throw new Error('Not authenticated');
         setUsername(data.user.username);
-      } catch (err) {
+      } catch {
         router.push('/');
       }
     };
-
     checkAuth();
   }, [router]);
+
 
   useEffect(() => {
     const loadStats = async () => {
@@ -38,6 +35,7 @@ export default function DashboardPage() {
     loadStats();
   }, []);
 
+  // Logout
   const handleLogout = async () => {
     try {
       await fetch('/api/auth/logout', { method: 'POST' });
@@ -47,67 +45,92 @@ export default function DashboardPage() {
     }
   };
 
+  
+  const missed = lastGameStats
+    ? lastGameStats.falsePositives + lastGameStats.falseNegatives
+    : 0;
+  const correct = lastGameStats
+    ? lastGameStats.phishingDetected + lastGameStats.legitimateAllowed
+    : 0;
+
   return (
-    <div className="min-h-screen bg-[#0A192F] flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-[#0B1120] flex flex-col items-center justify-center p-4 font-mono">
       <div className="absolute top-4 right-4 flex items-center gap-4">
-        <span className="text-[#5FFBF1] font-mono">Welcome, {username}!</span>
-        <button 
+        <span className="text-[#5FFBF1]">Welcome, {username}!</span>
+        <button
           onClick={handleLogout}
-          className="text-[#FF4365] hover:text-[#FF5476] font-mono"
+          className="text-[#FF3366] hover:text-[#FF5476]"
         >
           Logout
         </button>
       </div>
 
-      <div className="text-center mb-16">
-        <h1 className="text-[#5FFBF1] text-5xl font-mono mb-4">AuthenticatePlease</h1>
-        <p className="text-[#FF4365] text-xl">Train to detect phishing</p>
+      <div className="text-center mb-12">
+        <h1 className="text-[#64FFDA] text-5xl mb-2">AuthenticatePlease</h1>
+        <p className="text-[#FF3366] text-xl">Train to detect phishing</p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6 mb-16">
+      <div className="flex flex-wrap justify-center gap-6 mb-12">
         <Link href="/game" className="w-48">
-          <button className="w-full bg-[#5FFBF1] text-[#0A192F] py-3 px-6 rounded font-mono text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <button className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
             START GAME
           </button>
         </Link>
 
         <Link href="/statistics" className="w-48">
-          <button className="w-full bg-[#5FFBF1] text-[#0A192F] py-3 px-6 rounded font-mono text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <button className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
             STATISTICS
           </button>
         </Link>
 
         <Link href="/tutorial" className="w-48">
-          <button className="w-full bg-[#5FFBF1] text-[#0A192F] py-3 px-6 rounded font-mono text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <button className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
             TUTORIAL
           </button>
         </Link>
 
         <Link href="/settings" className="w-48">
-          <button className="w-full bg-[#5FFBF1] text-[#0A192F] py-3 px-6 rounded font-mono text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <button className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
             SETTINGS
           </button>
         </Link>
       </div>
 
-      <div className="bg-[#0E1F37] p-8 rounded-lg w-full max-w-md">
-        <h2 className="text-[#5FFBF1] text-2xl font-mono mb-4">
-          YOUR LAST SCORE: <span className="text-[#FF4365]">{lastGameStats ? lastGameStats.score : 0}</span>
-        </h2>
-        <p className="text-gray-400 mb-6">
-          Missed: {lastGameStats ? (lastGameStats.falsePositives + lastGameStats.falseNegatives) : 0} / 
-          Correct: {lastGameStats ? (lastGameStats.phishingDetected + lastGameStats.legitimateAllowed) : 0}
-        </p>
-        
-        <div className="flex items-end justify-between h-32">
-          <div className="w-8 h-8 bg-[#5FFBF1]"></div>
-          <div className="w-8 h-16 bg-[#5FFBF1]"></div>
-          <div className="w-8 h-20 bg-[#5FFBF1]"></div>
-          <div className="w-8 h-24 bg-[#5FFBF1]"></div>
-          <div className="w-8 h-32 bg-[#5FFBF1]"></div>
-          <div className="w-8 h-28 bg-[#5FFBF1]"></div>
+   
+      <div className="bg-[#0B1120] border-4 border-[#112240] rounded-lg w-full max-w-md shadow-heavy">
+        <div className="py-6">
+          <h2 className="text-[#64FFDA] text-2xl font-bold mb-4 text-center">
+            YOUR LAST SCORE:{' '}
+            <span className="text-[#FF3366]">
+              {lastGameStats ? lastGameStats.score : 0}
+            </span>
+          </h2>
+
+          <div className="flex justify-between mb-6 px-6">
+            <span className="text-[#FF3366] text-lg font-medium">
+              Missed:{' '}
+              {lastGameStats
+                ? lastGameStats.falsePositives + lastGameStats.falseNegatives
+                : 0}
+            </span>
+            <span className="text-[#5FFBF1] text-lg font-medium">
+              Correct:{' '}
+              {lastGameStats
+                ? lastGameStats.phishingDetected + lastGameStats.legitimateAllowed
+                : 0}
+            </span>
+          </div>
+
+     
+          <div className="w-full  ">
+            <BarChart
+              data={[missed, correct]}
+              barHeight={52}  
+              barGap={24}      
+            />
+          </div>
         </div>
       </div>
     </div>
   );
-} 
+}
