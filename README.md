@@ -54,39 +54,37 @@ The project started with a clear vision for a modern, cyberpunk-themed phishing 
   - CSV export functionality
   - Statistics reset option
 
-## 🚀 Getting Started
+## 🚀 Running the Project
 
-### Prerequisites
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-
-### Installation
+### Production Build (For Teacher Review)
+A production build is included in the repository for easy review:
 
 1. Clone the repository
-```bash
-git clone https://github.com/B4SEE/AuthenticatePlease
-cd AuthenticatePlease/authpls
-```
+2. Navigate to the project directory:
+   ```bash
+   cd authpls
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the production server:
+   ```bash
+   npm start
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-2. Install dependencies
-```bash
-npm install
-```
+The production build is already included in the `.next` directory, so there's no need to run `npm run build`.
 
-3. Start the development server
-```bash
-npm run dev
-```
+### Development Mode
+To run the project in development mode:
 
-The application will be available at `http://localhost:3000`
-
-### Production Deployment
-
-Build the production version:
-```bash
-npm run build
-npm start
-```
+1. Follow steps 1-3 above
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## 🎯 How to Play
 
@@ -134,9 +132,8 @@ Track your progress with detailed statistics:
 
 ## 🛠️ Technologies
 
-- Next.js 13+ (App Router)
-- React 18
+- Next.js 14
+- React
+- Tailwind CSS
 - TypeScript
-- TailwindCSS
-- Iron Session
-- bcrypt.js
+- Node.js
