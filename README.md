@@ -56,7 +56,7 @@ The project started with a clear vision for a modern, cyberpunk-themed phishing 
 
 ## 🚀 Running the Project
 
-### Production Build (For Teacher Review)
+### Production Build
 A production build is included in the repository for easy review:
 
 1. Clone the repository
@@ -74,7 +74,7 @@ A production build is included in the repository for easy review:
    ```
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-The production build is already included in the `.next` directory, so there's no need to run `npm run build`.
+<!--The production build is already included in the `.next` directory, so there's no need to run `npm run build`.-->
 
 ### Development Mode
 To run the project in development mode:
