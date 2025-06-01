@@ -62,7 +62,7 @@ A production build is included in the repository for easy review:
 1. Clone the repository
 2. Navigate to the project directory:
    ```bash
-   cd authpls
+   cd AuthenticatePlease/authpls
    ```
 3. Install dependencies:
    ```bash
