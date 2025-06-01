@@ -2,6 +2,17 @@
 
 A cybersecurity training game that simulates real-world phishing scenarios. Players act as email security verifiers, making critical decisions about incoming emails while learning to identify phishing attempts.
 
+## 📋 Project Documentation
+
+### Requirements and Implementation Status
+For a detailed overview of project requirements and their implementation status, see [requirements.md](requirements.md).
+
+### Initial Vision
+The project started with a clear vision for a modern, cyberpunk-themed phishing detection game:
+
+- **Initial Design**: View [initial mockup](AuthenticatePlease.png).
+- **Design Evolution**: The final implementation follows the initial vision while adding additional features like.
+
 ## 🎮 Features
 
 ### Email Verification Tasks

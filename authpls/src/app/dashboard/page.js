@@ -72,33 +72,33 @@ export default function DashboardPage() {
 
       <div className="flex flex-wrap justify-center gap-6 mb-12">
         <Link href="/game" className="w-48">
-          <button className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <div className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors cursor-pointer flex items-center justify-center">
             START GAME
-          </button>
+          </div>
         </Link>
 
         <Link href="/statistics" className="w-48">
-          <button className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <div className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors cursor-pointer flex items-center justify-center">
             STATISTICS
-          </button>
+          </div>
         </Link>
 
         <Link href="/tutorial" className="w-48">
-          <button className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <div className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors cursor-pointer flex items-center justify-center">
             TUTORIAL
-          </button>
+          </div>
         </Link>
 
         <Link href="/settings" className="w-48">
-          <button className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <div className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors cursor-pointer flex items-center justify-center">
             SETTINGS
-          </button>
+          </div>
         </Link>
 
         <Link href="/feedback" className="w-48">
-          <button className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors">
+          <div className="w-full bg-[#64FFDA] text-[#0A192F] font-extrabold shadow-md py-3 px-6 rounded text-lg hover:bg-[#FF4365] hover:text-white transition-colors cursor-pointer flex items-center justify-center">
             FEEDBACK
-          </button>
+          </div>
         </Link>
       </div>
 
